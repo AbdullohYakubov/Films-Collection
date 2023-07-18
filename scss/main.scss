@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+::selection {
+    background-color: #f0f0f0;
+}
+
+body {
+    background-color: #F3F3F3;
+    color: #4B4B4B;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 25px;
+}
+
+img {
+    user-select: none;
+}
+
+.container {
+    max-width: 1260px;
+    margin: auto;
+    padding: 20px;
+}
+
+@import "./films-section";

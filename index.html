@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object/Rendering films</title>
+
+    <link rel="stylesheet" href="./css/main.min.css">
+</head>
+
+<body>
+    <main class="container">
+        <section class="films">
+            <form class="films__form">
+                <input type="text" placeholder="Poster url..." class="films__input film__input--poster" required>
+                <input type="text" placeholder="Title..." class="films__input film__input--title" required>
+                <input type="text" placeholder="Overview..." class="films__input film__input--overview" required>
+                <!-- <input type="text" placeholder="Release date...(dd.mm.yyyy)"
+                    class="films__input film__input--release_date" required> -->
+                <input type="text" placeholder="The genres..." class="films__input film__input--genres" required>
+                <button type="submit" class="films__btn">Add</button>
+            </form>
+
+            <ul class="films__list">
+                <li class="film">
+                    <img class="film__poster" src="https://image.tmdb.org/t/p/w500/xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+                        alt="Shazam poster">
+                    <h1 class="film__title">Shazam!</h1>
+                    <p class="film__overview">A boy is given the ability to become an adult superhero in times of need
+                        with a single magic word.</p>
+                    <time class="film__release">1553299200</time>
+                    <ul class="film__genres">
+                        <li>Action</li>
+                        <li>Comedy</li>
+                        <li>Fantasy</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <script src="./js/films.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
