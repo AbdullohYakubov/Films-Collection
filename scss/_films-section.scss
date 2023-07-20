@@ -1,13 +1,15 @@
 .films__form {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     align-items: center;
+    // flex-wrap: wrap;
 }
 
+.films__select,
 .films__input,
 .films__btn {
     margin: 10px 10px 10px 0;
-    padding: 10px 15px;
+    padding: 7px 15px;
     outline: none;
     background-color: #FAFBFC;
     border: 1px solid rgba(27, 31, 35, 0.15);
@@ -17,6 +19,10 @@
     font-size: 15px;
     color: #4B4B4B;
     transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+}
+
+.films__select {
+    margin-left: 10px;
 }
 
 .films__btn:hover {
@@ -61,7 +67,7 @@
     text-align: center;
 }
 
-.film__release {
+.film__release-date {
     padding: 10px 0;
 }
 

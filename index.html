@@ -13,32 +13,35 @@
     <main class="container">
         <section class="films">
             <form class="films__form">
-                <input type="text" placeholder="Poster url..." class="films__input film__input--poster" required>
-                <input type="text" placeholder="Title..." class="films__input film__input--title" required>
-                <input type="text" placeholder="Overview..." class="films__input film__input--overview" required>
-                <!-- <input type="text" placeholder="Release date...(dd.mm.yyyy)"
-                    class="films__input film__input--release_date" required> -->
-                <input type="text" placeholder="The genres..." class="films__input film__input--genres" required>
-                <button type="submit" class="films__btn">Add</button>
+                <h1>Filter films by</h1>
+                <select class="films__select"></select>
+                <!-- <input type="search" placeholder="Poster url..." class="films__input film__input--poster" required> -->
+                <!-- <input type="search" placeholder="Title..." class="films__input film__input--title"> -->
+                <!-- <input type="search" placeholder="Overview..." class="films__input film__input--overview"> -->
+                <!-- <input type="search" placeholder="The genres..." class="films__input film__input--genres" required> -->
+                <button type="submit" class="films__btn">Filter</button>
             </form>
 
-            <ul class="films__list">
-                <li class="film">
-                    <img class="film__poster" src="https://image.tmdb.org/t/p/w500/xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
-                        alt="Shazam poster">
-                    <h1 class="film__title">Shazam!</h1>
-                    <p class="film__overview">A boy is given the ability to become an adult superhero in times of need
-                        with a single magic word.</p>
-                    <time class="film__release">1553299200</time>
-                    <ul class="film__genres">
-                        <li>Action</li>
-                        <li>Comedy</li>
-                        <li>Fantasy</li>
-                    </ul>
-                </li>
-            </ul>
+
+            <ul class="films__list"></ul>
         </section>
     </main>
+
+    <!-- Templates -->
+
+    <template id="films__template">
+        <li class="film">
+            <img class="film__poster" src="" alt="">
+            <h1 class="film__title"></h1>
+            <p class="film__overview"></p>
+            <time class="film__release-date"></time>
+            <ul class="film__genres"></ul>
+        </li>
+    </template>
+
+    <template id="genres__template">
+        <li class="film__genre"></li>
+    </template>
 
     <script src="./js/films.js"></script>
     <script src="./js/main.js"></script>
