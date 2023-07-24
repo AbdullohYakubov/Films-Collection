@@ -1,10 +1,12 @@
 // Getting Elements & Assigning Constant Values
 const elFilmsForm = document.querySelector(".films__form");
 const elFilmsSelect = document.querySelector(".films__select");
-const elInputPoster = elFilmsForm.querySelector(".film__input--poster");
-const elInputTitle = elFilmsForm.querySelector(".film__input--title");
-const elInputOverview = elFilmsForm.querySelector(".film__input--overview");
-const elInputGenres = elFilmsForm.querySelector(".film__input--genres");
+const elFilmsSearchInput = document.querySelector(".films__search__input");
+
+const elInputPoster = document.querySelector(".film__input--poster");
+const elInputTitle = document.querySelector(".film__input--title");
+const elInputOverview = document.querySelector(".film__input--overview");
+const elInputGenres = document.querySelector(".film__input--genres");
 
 const elFilmsList = document.querySelector(".films__list");
 const elTemplateFilms = document.querySelector("#films__template").content;
@@ -36,13 +38,13 @@ const filterGenres = (array) => {
 
 // Creating Option Elements for each Genre
 const createOptions = (array, element) => {
-  element.innerHTML = null;
-
   array.forEach((genre) => {
     const elFilmsOptions = document.createElement("option");
+
     // Assigning values and text content to the Options
     elFilmsOptions.value = genre;
     elFilmsOptions.textContent = genre;
+
     // Appending the Options to Select
     element.appendChild(elFilmsOptions);
   });
@@ -86,27 +88,35 @@ const renderFilms = (array, element) => {
 
 renderFilms(films, elFilmsList);
 
+// Handle Form Activation
 const handleFilmsFormSubmit = (evt) => {
   evt.preventDefault();
+
   elFilmsList.innerHTML = null;
-  const userFilmsSelect = elFilmsSelect.value;
 
-  // One way to filter Films that takes longer lines of code (7 lines)
+  // SearchByGenre
+  const selectedFilm = elFilmsSelect.value.trim();
 
-  // const filteredFilms = [];
-  // films.forEach((film) => {
-  //   if (film.genres.includes(userFilmsSelect)) {
-  //     filteredFilms.push(film);
-  //   }
-  // });
-  // renderFilms(filteredFilms, elFilmsList);
+  let filteredFilmsByGenre = [];
 
-  // Second more effective way to filter Films that take fewer lines of code (4 lines)
+  if (selectedFilm === "all") {
+    filteredFilmsByGenre = films;
+  } else {
+    filteredFilmsByGenre = films.filter((film) =>
+      film.genres.includes(selectedFilm)
+    );
+  }
 
-  const filteredFilms = films.filter((film) =>
-    film.genres.includes(userFilmsSelect)
+  // SearchByTitle
+  const searchedValue = elFilmsSearchInput.value.trim();
+
+  const regex = new RegExp(searchedValue, "gi");
+
+  const filteredFilmsByTitle = filteredFilmsByGenre.filter((film) =>
+    film.title.match(regex)
   );
-  renderFilms(filteredFilms, elFilmsList);
+
+  renderFilms(filteredFilmsByTitle, elFilmsList);
 
   // const newFilmPoster = elInputPoster.value.trim();
   // const newFilmTitle = elInputTitle.value.trim();
@@ -134,3 +144,5 @@ const handleFilmsFormSubmit = (evt) => {
 };
 
 elFilmsForm.addEventListener("submit", handleFilmsFormSubmit);
+
+// elFilmsSearchInput.addEventListener("keypress", (evt) => {});

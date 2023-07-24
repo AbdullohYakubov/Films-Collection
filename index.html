@@ -14,11 +14,14 @@
         <section class="films">
             <form class="films__form">
                 <h1>Filter films by</h1>
-                <select class="films__select"></select>
+                <select class="films__select">
+                    <option value="all">All genres</option>
+                </select>
                 <!-- <input type="search" placeholder="Poster url..." class="films__input film__input--poster" required> -->
                 <!-- <input type="search" placeholder="Title..." class="films__input film__input--title"> -->
                 <!-- <input type="search" placeholder="Overview..." class="films__input film__input--overview"> -->
                 <!-- <input type="search" placeholder="The genres..." class="films__input film__input--genres" required> -->
+                <input type="search" class="films__search__input" placeholder="Enter the film title...">
                 <button type="submit" class="films__btn">Filter</button>
             </form>
 
@@ -33,9 +36,11 @@
         <li class="film">
             <img class="film__poster" src="" alt="">
             <h1 class="film__title"></h1>
-            <p class="film__overview"></p>
-            <time class="film__release-date"></time>
-            <ul class="film__genres"></ul>
+            <div>
+                <p class="film__overview"></p>
+                <time class="film__release-date"></time>
+                <ul class="film__genres"></ul>
+            </div>
         </li>
     </template>
 

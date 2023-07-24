@@ -1,10 +1,9 @@
 .films__form {
     display: flex;
-    // justify-content: space-between;
     align-items: center;
-    // flex-wrap: wrap;
 }
 
+.films__search__input,
 .films__select,
 .films__input,
 .films__btn {
@@ -39,39 +38,49 @@
 
 .films__list {
     display: flex;
-    justify-content: space-between;
-    gap: 3rem;
+    gap: 2rem;
     flex-wrap: wrap;
     margin-top: 30px;
     list-style: none;
 }
 
 .film {
-    width: 30%;
+    width: 23.3%;
     display: flex;
     flex-direction: column;
-    padding: 15px;
-    background-color: #FEFEFE;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    border-radius: 5px;
+    // padding: 15px;
+    // background-color: #FEFEFE;
+    // box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 10px;
 }
 
 .film__poster {
     width: 100%;
     height: auto;
+    border-radius: 10px;
 }
 
 .film__title {
+    color: #FDFCF9;
     font-size: 25px;
-    padding: 10px;
-    text-align: center;
+    padding: 20px 20px 20px 0;
+    // text-align: center;
 }
 
-.film__release-date {
-    padding: 10px 0;
+.film__overview,
+.film__release-date,
+.film__genres {
+    color: #697D8E;
+    // display: none;
+}
+
+.film__overview {
+    padding-bottom: 10px;
 }
 
 .film__genres {
-    padding: inherit;
     list-style: disc;
+    padding-top: 10px;
+    padding-left: 20px;
+
 }
