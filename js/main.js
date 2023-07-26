@@ -1,12 +1,16 @@
 // Getting Elements & Assigning Constant Values
-const elFilmsForm = document.querySelector(".films__form");
+const elFilmsForm = document.querySelector(".films__filter__form");
 const elFilmsSelect = document.querySelector(".films__select");
 const elFilmsSearchInput = document.querySelector(".films__search__input");
 
+const elFilmsAddForm = document.querySelector(".films__add__form");
+const elToggle = document.querySelector(".toggle");
 const elInputPoster = document.querySelector(".film__input--poster");
 const elInputTitle = document.querySelector(".film__input--title");
 const elInputOverview = document.querySelector(".film__input--overview");
+const elInputReleaseDate = document.querySelector(".film__input--release-date");
 const elInputGenres = document.querySelector(".film__input--genres");
+const elInvalidInputs = document.querySelector(".valid-inputs");
 
 const elFilmsList = document.querySelector(".films__list");
 const elTemplateFilms = document.querySelector("#films__template").content;
@@ -38,16 +42,23 @@ const filterGenres = (array) => {
 
 // Creating Option Elements for each Genre
 const createOptions = (array, element) => {
+  // Creating a Fragment for all Option elements
+  const optionsFragment = document.createDocumentFragment();
+
   array.forEach((genre) => {
+    // Creating Option elements for each loop
     const elFilmsOptions = document.createElement("option");
 
-    // Assigning values and text content to the Options
+    // Assigning values and text content to Options elements
     elFilmsOptions.value = genre;
     elFilmsOptions.textContent = genre;
 
-    // Appending the Options to Select
-    element.appendChild(elFilmsOptions);
+    // Appending Option elements to the Fragment
+    optionsFragment.appendChild(elFilmsOptions);
   });
+
+  // Appending the Fragment to Select element
+  element.appendChild(optionsFragment);
 };
 
 createOptions(filterGenres(films), elFilmsSelect);
@@ -56,22 +67,38 @@ createOptions(filterGenres(films), elFilmsSelect);
 const renderGenres = (array, element) => {
   element.innerHTML = null;
 
+  const genresFragment = document.createDocumentFragment();
+
   array.forEach((genre) => {
+    // Creating a Fragment for each genre
+
+    // Copying the Template content and multiplying it on every iteration
     const genresTemplate = elTemplateGenres.cloneNode(true);
 
+    // Assigning text Content to every genre
     genresTemplate.querySelector(".film__genre").textContent = genre;
 
-    element.appendChild(genresTemplate);
+    // Appending the Template content to the Fragment
+    genresFragment.appendChild(genresTemplate);
   });
+
+  // Appending the Fragment to Genres list
+  element.appendChild(genresFragment);
 };
 
 // Rendering Films to DOM
 const renderFilms = (array, element) => {
+  // Nulifying the elements in Films list
   element.innerHTML = null;
 
+  // Creating a Fragment for each film
+  const filmsFragment = document.createDocumentFragment();
+
   array.forEach((film) => {
+    // Copying the Template content and multiplying it on every iteration
     const filmTemplate = elTemplateFilms.cloneNode(true);
 
+    // Changing the attributes to the respective values
     filmTemplate.querySelector(".film__poster").src = film.poster;
     filmTemplate.querySelector(".film__poster").alt = film.title + " poster";
     filmTemplate.querySelector(".film__title").textContent = film.title;
@@ -79,17 +106,22 @@ const renderFilms = (array, element) => {
     filmTemplate.querySelector(".film__release-date").textContent =
       normalizeReleaseDate(film.release_date);
 
+    // Activating the Genres list
     const elFilmGenres = filmTemplate.querySelector(".film__genres");
     renderGenres(film.genres, elFilmGenres);
 
-    element.appendChild(filmTemplate);
+    // Appending the films to the Fragment
+    filmsFragment.appendChild(filmTemplate);
   });
+
+  // Appending the Fragment to the Films list
+  element.appendChild(filmsFragment);
 };
 
 renderFilms(films, elFilmsList);
 
 // Handle Form Activation
-const handleFilmsFormSubmit = (evt) => {
+const handleFilmsFilterFormSubmit = (evt) => {
   evt.preventDefault();
 
   elFilmsList.innerHTML = null;
@@ -117,32 +149,57 @@ const handleFilmsFormSubmit = (evt) => {
   );
 
   renderFilms(filteredFilmsByTitle, elFilmsList);
-
-  // const newFilmPoster = elInputPoster.value.trim();
-  // const newFilmTitle = elInputTitle.value.trim();
-  // const newFilmOverview = elInputOverview.value.trim();
-  // const newFilmReleaseDate = calculatePresentTime(new Date());
-  // const newFilmGenres = elInputGenres.value.trim().split(", ");
-
-  // const newFilm = {
-  //   title: newFilmTitle,
-  //   poster: newFilmPoster,
-  //   overview: newFilmOverview,
-  //   release_date: newFilmReleaseDate,
-  //   genres: newFilmGenres,
-  // };
-
-  // films.unshift(newFilm);
-
-  // renderFilms(films, elFilmsList);
-
-  // elInputPoster.value = null;
-  // elInputTitle.value = null;
-  // elInputOverview.value = null;
-  // elInputGenres.value = null;
-  // elInputReleaseDate.value = null;
 };
 
-elFilmsForm.addEventListener("submit", handleFilmsFormSubmit);
+elFilmsForm.addEventListener("submit", handleFilmsFilterFormSubmit);
 
-// elFilmsSearchInput.addEventListener("keypress", (evt) => {});
+const validateUserInputs = (element) => {
+  const newFilmTitle = elInputTitle.value.trim();
+  const newFilmOverview = elInputOverview.value.trim();
+
+  if (newFilmTitle === "" && newFilmOverview === "") {
+    element.classList.add("invalid-inputs");
+  } else {
+    element.classList.remove("invalid-inputs");
+  }
+};
+
+const handleFilmsAddFormSubmit = (evt) => {
+  evt.preventDefault();
+  const newFilmTitle = elInputTitle.value.trim();
+  const newFilmPoster = elInputPoster.value.trim();
+  const newFilmOverview = elInputOverview.value.trim();
+  const newFilmReleaseDate = elInputReleaseDate.value.trim();
+  const newFilmGenres = elInputGenres.value.trim().split(", ");
+
+  const newFilm = {
+    title: newFilmTitle,
+    poster: newFilmPoster,
+    overview: newFilmOverview,
+    release_date: newFilmReleaseDate,
+    genres: newFilmGenres,
+  };
+
+  films.unshift(newFilm);
+
+  renderFilms(films, elFilmsList);
+
+  validateUserInputs(elInvalidInputs);
+
+  elInputPoster.value = null;
+  elInputTitle.value = null;
+  elInputOverview.value = null;
+  elInputGenres.value = null;
+  elInputReleaseDate.value = null;
+};
+
+elFilmsAddForm.addEventListener("submit", handleFilmsAddFormSubmit);
+
+const handleToggleButton = (evt) => {
+  if (elFilmsAddForm.classList.contains("close-add-films-form")) {
+    elFilmsAddForm.classList.remove("close-add-films-form");
+    elFilmsAddForm.classList.add("open-add-films-form");
+  }
+};
+
+elToggle.addEventListener("change", handleToggleButton);

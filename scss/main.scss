@@ -8,16 +8,33 @@
     padding: 0;
 }
 
-// ::selection {
-//     background-color: #f0f0f0;
-// }
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #FF4150;
+    border-radius: 5px;
+}
+
+::selection {
+    background-color: #697D8E;
+}
+
+::placeholder {
+    color: #FFD4D6;
+}
+
+::-webkit-search-cancel-button {
+    display: none;
+}
 
 body {
     background-color: #26262D;
     // color: #4B4B4B;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
-    line-height: 25px;
+    line-height: 23px;
 }
 
 img {
@@ -30,4 +47,5 @@ img {
     padding: 20px;
 }
 
+@import "./header";
 @import "./films-section";
