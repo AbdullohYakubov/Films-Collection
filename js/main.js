@@ -156,11 +156,14 @@ elFilmsForm.addEventListener("submit", handleFilmsFilterFormSubmit);
 const validateUserInputs = (element) => {
   const newFilmTitle = elInputTitle.value.trim();
   const newFilmOverview = elInputOverview.value.trim();
+  const emptyArr = [];
 
   if (newFilmTitle === "" && newFilmOverview === "") {
     element.classList.add("invalid-inputs");
+    renderFilms(emptyArr, elFilmsList);
   } else {
     element.classList.remove("invalid-inputs");
+    renderFilms(films, elFilmsList);
   }
 };
 
@@ -199,6 +202,11 @@ const handleToggleButton = (evt) => {
   if (elFilmsAddForm.classList.contains("close-add-films-form")) {
     elFilmsAddForm.classList.remove("close-add-films-form");
     elFilmsAddForm.classList.add("open-add-films-form");
+    elToggle.textContent = "Close";
+  } else {
+    elFilmsAddForm.classList.remove("open-add-films-form");
+    elFilmsAddForm.classList.add("close-add-films-form");
+    elToggle.innerHTML = "Add your movie";
   }
 };
 
