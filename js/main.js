@@ -1,6 +1,7 @@
 // Getting Elements & Assigning Constant Values
 const elFilmsForm = document.querySelector(".films__filter__form");
 const elFilmsSelect = document.querySelector(".films__select");
+const elFilmsSelectByOrder = document.querySelector(".films__select-by-order");
 const elFilmsSearchInput = document.querySelector(".films__search__input");
 
 const elFilmsAddForm = document.querySelector(".films__add__form");
@@ -126,7 +127,7 @@ const handleFilmsFilterFormSubmit = (evt) => {
 
   elFilmsList.innerHTML = null;
 
-  // SearchByGenre
+  // Search by genre
   const selectedFilm = elFilmsSelect.value.trim();
 
   let filteredFilmsByGenre = [];
@@ -139,7 +140,52 @@ const handleFilmsFilterFormSubmit = (evt) => {
     );
   }
 
-  // SearchByTitle
+  // Search by order
+  const selectedFilmOrder = elFilmsSelectByOrder.value.trim();
+
+  if (selectedFilmOrder === "a-z") {
+    filteredFilmsByGenre.sort((a, b) => {
+      if (a.title > b.title) {
+        return 1;
+      } else if (a.title < b.title) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+  } else if (selectedFilmOrder === "z-a") {
+    filteredFilmsByGenre.sort((a, b) => {
+      if (b.title > a.title) {
+        return 1;
+      } else if (b.title < a.title) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+  } else if (selectedFilmOrder === "new-old") {
+    filteredFilmsByGenre.sort((a, b) => {
+      if (a.release_date > b.release_date) {
+        return 1;
+      } else if (a.release_date < b.release_date) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+  } else if (selectedFilmOrder === "old-new") {
+    filteredFilmsByGenre.sort((a, b) => {
+      if (b.release_date > a.release_date) {
+        return 1;
+      } else if (b.release_date < a.release_date) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+  }
+
+  // Search by title
   const searchedValue = elFilmsSearchInput.value.trim();
 
   const regex = new RegExp(searchedValue, "gi");
@@ -153,16 +199,16 @@ const handleFilmsFilterFormSubmit = (evt) => {
 
 elFilmsForm.addEventListener("submit", handleFilmsFilterFormSubmit);
 
-const validateUserInputs = (element) => {
+const validateUserInputs = () => {
   const newFilmTitle = elInputTitle.value.trim();
   const newFilmOverview = elInputOverview.value.trim();
   const emptyArr = [];
 
   if (newFilmTitle === "" && newFilmOverview === "") {
-    element.classList.add("invalid-inputs");
+    elInvalidInputs.classList.add("invalid-inputs");
     renderFilms(emptyArr, elFilmsList);
   } else {
-    element.classList.remove("invalid-inputs");
+    elInvalidInputs.classList.remove("invalid-inputs");
     renderFilms(films, elFilmsList);
   }
 };
@@ -185,9 +231,9 @@ const handleFilmsAddFormSubmit = (evt) => {
 
   films.unshift(newFilm);
 
-  renderFilms(films, elFilmsList);
+  renderFilms(validateUserInputs(), elFilmsList);
 
-  validateUserInputs(elInvalidInputs);
+  // validateUserInputs(elInvalidInputs);
 
   elInputPoster.value = null;
   elInputTitle.value = null;
