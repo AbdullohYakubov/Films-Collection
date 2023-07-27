@@ -199,16 +199,16 @@ const handleFilmsFilterFormSubmit = (evt) => {
 
 elFilmsForm.addEventListener("submit", handleFilmsFilterFormSubmit);
 
-const validateUserInputs = () => {
+const validateUserInputs = (element) => {
   const newFilmTitle = elInputTitle.value.trim();
   const newFilmOverview = elInputOverview.value.trim();
   const emptyArr = [];
 
   if (newFilmTitle === "" && newFilmOverview === "") {
-    elInvalidInputs.classList.add("invalid-inputs");
+    element.classList.add("invalid-inputs");
     renderFilms(emptyArr, elFilmsList);
   } else {
-    elInvalidInputs.classList.remove("invalid-inputs");
+    element.classList.remove("invalid-inputs");
     renderFilms(films, elFilmsList);
   }
 };
@@ -231,9 +231,9 @@ const handleFilmsAddFormSubmit = (evt) => {
 
   films.unshift(newFilm);
 
-  renderFilms(validateUserInputs(), elFilmsList);
+  renderFilms(films, elFilmsList);
 
-  // validateUserInputs(elInvalidInputs);
+  validateUserInputs(elInvalidInputs);
 
   elInputPoster.value = null;
   elInputTitle.value = null;
