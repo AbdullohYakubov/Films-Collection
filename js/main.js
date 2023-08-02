@@ -1,21 +1,27 @@
 // Getting Elements & Assigning Constant Values
-const elFilmsForm = document.querySelector(".films__filter__form");
-const elFilmsSelect = document.querySelector(".films__select");
-const elFilmsSelectByOrder = document.querySelector(".films__select-by-order");
-const elFilmsSearchInput = document.querySelector(".films__search__input");
+const elFilmsForm = findElement(".films__filter__form");
+const elFilmsSelect = findElement(".films__select", elFilmsForm);
+const elFilmsSelectByOrder = findElement(
+  ".films__select-by-order",
+  elFilmsForm
+);
+const elFilmsSearchInput = findElement(".films__search__input", elFilmsForm);
+const elToggle = findElement(".toggle", elFilmsForm);
 
-const elFilmsAddForm = document.querySelector(".films__add__form");
-const elToggle = document.querySelector(".toggle");
-const elInputPoster = document.querySelector(".film__input--poster");
-const elInputTitle = document.querySelector(".film__input--title");
-const elInputOverview = document.querySelector(".film__input--overview");
-const elInputReleaseDate = document.querySelector(".film__input--release-date");
-const elInputGenres = document.querySelector(".film__input--genres");
-const elInvalidInputs = document.querySelector(".valid-inputs");
+const elFilmsAddForm = findElement(".films__add__form");
+const elInputPoster = findElement(".film__input--poster", elFilmsAddForm);
+const elInputTitle = findElement(".film__input--title", elFilmsAddForm);
+const elInputOverview = findElement(".film__input--overview", elFilmsAddForm);
+const elInputReleaseDate = findElement(
+  ".film__input--release-date",
+  elFilmsAddForm
+);
+const elInputGenres = findElement(".film__input--genres", elFilmsAddForm);
+const elInvalidInputs = findElement(".valid-inputs", elFilmsAddForm);
 
-const elFilmsList = document.querySelector(".films__list");
-const elTemplateFilms = document.querySelector("#films__template").content;
-const elTemplateGenres = document.querySelector("#genres__template").content;
+const elFilmsList = findElement(".films__list");
+const elTemplateFilms = findElement("#films__template").content;
+const elTemplateGenres = findElement("#genres__template").content;
 
 // Normalizing the Date Format
 const normalizeReleaseDate = (format) => {
