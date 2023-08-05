@@ -1,0 +1,28 @@
+<svg id="Group_11" data-name="Group 11" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27.598" height="26.396" viewBox="0 0 27.598 26.396">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_14" data-name="Rectangle 14" width="27.598" height="26.396" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_13" data-name="Rectangle 13" width="27.598" height="26.396" transform="translate(0 0)" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <rect id="Rectangle_12" data-name="Rectangle 12" width="21.066" height="16.169" transform="translate(5.653 9.314)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Group_10" data-name="Group 10" clip-path="url(#clip-path)">
+    <g id="Group_9" data-name="Group 9">
+      <g id="Group_8" data-name="Group 8" clip-path="url(#clip-path-2)">
+        <path id="Path_148" data-name="Path 148" d="M21.382,25.9a1.019,1.019,0,0,1-.478-.119l-7.092-3.73-7.119,3.73A1.027,1.027,0,0,1,5.2,24.694l1.355-7.9L.812,11.178a1.026,1.026,0,0,1,.569-1.752l7.93-1.152,3.567-7.2a1.027,1.027,0,0,1,1.842,0l3.546,7.185,7.952,1.168a1.027,1.027,0,0,1,.568,1.752l-5.739,5.594L22.4,24.694a1.028,1.028,0,0,1-1.013,1.2" fill="#feda09"/>
+        <path id="Path_149" data-name="Path 149" d="M13.8,1a.522.522,0,0,1,.473.294L17.818,8.48a.524.524,0,0,0,.4.288l7.931,1.153a.527.527,0,0,1,.292.9L20.7,16.414a.524.524,0,0,0-.151.466l1.354,7.9a.528.528,0,0,1-.519.617.515.515,0,0,1-.245-.062L14.044,21.6a.523.523,0,0,0-.49,0L6.46,25.334a.515.515,0,0,1-.245.062.528.528,0,0,1-.519-.617l1.355-7.9a.528.528,0,0,0-.152-.466L1.16,10.82a.527.527,0,0,1,.292-.9L9.383,8.768a.524.524,0,0,0,.4-.288l3.547-7.186A.519.519,0,0,1,13.8,1m0-1A1.515,1.515,0,0,0,12.43.852L8.993,7.815,1.308,8.931a1.528,1.528,0,0,0-.846,2.605l5.561,5.42L4.71,24.61a1.525,1.525,0,0,0,2.216,1.609L13.8,22.606l6.873,3.613a1.527,1.527,0,0,0,2.216-1.609l-1.313-7.654,5.561-5.42a1.528,1.528,0,0,0-.846-2.605L18.6,7.815,15.168.851A1.516,1.516,0,0,0,13.8,0"/>
+        <g id="Group_7" data-name="Group 7" opacity="0.19" style="mix-blend-mode: multiply;isolation: isolate">
+          <g id="Group_6" data-name="Group 6">
+            <g id="Group_5" data-name="Group 5" clip-path="url(#clip-path-3)">
+              <path id="Path_150" data-name="Path 150" d="M6.86,17.991A11.043,11.043,0,0,0,21.968,9.314l4.389.638a.422.422,0,0,1,.234.719l-5.932,5.782a.423.423,0,0,0-.121.373l1.4,8.164a.421.421,0,0,1-.611.444L13.995,21.58a.418.418,0,0,0-.392,0L6.271,25.434a.421.421,0,0,1-.611-.444Z" fill="#f4b608"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

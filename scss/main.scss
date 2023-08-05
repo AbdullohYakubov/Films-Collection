@@ -18,7 +18,7 @@
 }
 
 ::selection {
-    background-color: #697D8E;
+    background-color: #1E4172;
 }
 
 ::placeholder {
@@ -37,15 +37,22 @@ body {
     line-height: 23px;
 }
 
+.main {
+    display: flex;
+    justify-content: space-between;
+    // align-items: center;
+}
+
 img {
     user-select: none;
 }
 
-.container {
-    max-width: 1460px;
-    margin: auto;
-    padding: 20px;
-}
+// .container {
+//     max-width: 100%;
+//     margin: auto;
+//     padding: 20px;
+// }
 
 @import "./header";
 @import "./films-section";
+@import "./aside";

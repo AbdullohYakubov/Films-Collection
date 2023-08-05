@@ -1,20 +1,39 @@
+.films {
+    width: 85%;
+    padding: 30px;
+}
+
 .films__list {
+    width: 100%;
     display: flex;
-    gap: 2rem;
+    gap: 25px;
     flex-wrap: wrap;
-    margin-top: 30px;
     list-style: none;
 }
 
 .film {
-    width: 18.1%;
+    width: 18.3% !important;
+    height: 450px;
     position: relative;
     border-radius: 10px;
     overflow: hidden;
 }
 
+.favourite-icon {
+    position: absolute;
+    top: 0;
+}
+
+// .film::before {
+//     content: url(../img/star.png);
+//     position: absolute;
+//    
+//     right: 10px;
+//     bottom: 27%;
+// }
+
 .film__poster-box {
-    height: 75%;
+    height: 73%;
     aspect-ratio: auto;
 }
 
@@ -25,14 +44,14 @@
 }
 
 .film__title-box {
-    height: 25%;
+    height: 27%;
     width: auto;
 }
 
 .film__title {
     color: #FDFCF9;
-    font-size: 20px;
-    padding: 15px 0 10px 0;
+    font-size: 17px;
+    padding: 10px 0 5px 0;
 }
 
 .film__genre {
@@ -44,7 +63,7 @@
 }
 
 .film__info {
-    height: 75%;
+    height: 73%;
     width: auto;
     position: absolute;
     top: -80%;
@@ -58,12 +77,12 @@
 
 .film__overview,
 .film__release-date {
-    padding: 15px;
+    padding: 10px;
     color: #FDFCF9;
     font-size: 13px;
-    line-height: 25px;
+    line-height: 21px;
 }
 
-.film:hover .film__info {
-    top: 0;
-}
+// .film:hover .film__info {
+//     top: 0;
+// }
