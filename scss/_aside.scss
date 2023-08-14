@@ -17,4 +17,12 @@
     list-style: none;
     padding-bottom: 30px;
     letter-spacing: 1px;
+    transition: .2s ease;
+}
+
+.features>li {
+    &:hover {
+        cursor: pointer;
+        color: #FF424F;
+    }
 }

@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>POPCORN.TV — Watch exclusively on our Websites!</title>
     <link rel="icon" type="image/jpg" href="./img/logo-color-favicon.png" />
+
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/main.min.css" />
   </head>
 
   <body>
     <header class="header">
       <a href="#" class="header__logo">
-        <img src="./img/logo-color.png" alt="" width="175" height="87.5" />
+        <!-- <img src="./img/logo-color.png" alt="" width="175" height="87.5" /> -->
+        <img src="./img/logo-icon.svg" alt="" />
       </a>
       <section class="header__forms">
         <form class="films__filter__form" autocomplete="off">
@@ -50,9 +55,7 @@
             placeholder="Search movies"
             id="search-films" />
           <button type="submit" class="films__btn">Filter</button>
-          <button class="films__btn toggle" onclick="handleToggleButton()">
-            Add your movie
-          </button>
+          <button class="films__btn toggle">Add your movie</button>
         </form>
 
         <form class="films__add__form close-add-films-form">
@@ -87,7 +90,7 @@
         <div class="aside__wrapper">
           <ul class="features">
             <li class="trending">Trending</li>
-            <li class="new-releases">New Releases</li>
+            <!-- <li class="new-releases">New Releases</li> -->
             <li class="favourites">Favourites</li>
             <li class="watch-later">Watch Later</li>
           </ul>
@@ -95,9 +98,38 @@
       </aside>
 
       <section class="films">
-        <ul class="films__list"></ul>
+        <ul class="films__list text-danger">
+          <li class="text-secondary">
+            <img src="./img/Ellipsis-1s-200px.svg" alt="" />
+          </li>
+          <h5 class="search__alert text-danger d-none">
+            Please, enter the movie title!
+          </h5>
+        </ul>
       </section>
     </main>
+
+    <footer class="footer">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <a class="page-link previous__page" href="#">Previous</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link first__page" href="#">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link second__page" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link third__page" href="#">3</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link next__page" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
 
     <!-- Templates -->
 
@@ -105,6 +137,11 @@
       <li class="film">
         <div class="film__poster-box">
           <img class="film__poster" src="" alt="" />
+
+          <div class="film__info">
+            <p class="film__overview"></p>
+            <time class="film__release-date"></time>
+          </div>
         </div>
 
         <div class="film__title-box">
@@ -112,12 +149,35 @@
           <ul class="film__genres"></ul>
         </div>
 
-        <div class="film__info">
-          <p class="film__overview"></p>
-          <time class="film__release-date"></time>
-        </div>
+        <svg
+          aria-label="Сохранить"
+          class="favourite-icon"
+          color="rgb(245, 245, 245)"
+          fill="rgb(245, 245, 245)"
+          height="25"
+          role="img"
+          viewBox="0 0 24 24"
+          width="25">
+          <polygon
+            fill="none"
+            points="20 21 12 13.44 4 21 4 3 20 3 20 21"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"></polygon>
+        </svg>
 
-        <img class="favourite-icon" src="./img/Star-Icon-987hjfd.svg" alt="" />
+        <!-- <svg
+          class="watch-later-icon"
+          height="25"
+          viewBox="0 0 24 24"
+          width="25"
+          focusable="false"
+          fill="#ffffff"
+          stroke-width="2">
+          <path
+            d="M14.97 16.95 10 13.87V7h2v5.76l4.03 2.49-1.06 1.7zM12 3c-4.96 0-9 4.04-9 9s4.04 9 9 9 9-4.04 9-9-4.04-9-9-9m0-1c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"></path>
+        </svg> -->
       </li>
     </template>
 
@@ -125,6 +185,7 @@
       <li class="film__genre"></li>
     </template>
 
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="./js/utils.js"></script>
     <script src="./js/films.js"></script>
     <script src="./js/main.js"></script>

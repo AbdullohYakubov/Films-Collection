@@ -1,0 +1,34 @@
+.footer {
+    margin: 30px 0;
+}
+
+.page-link,
+.disabled,
+.page-item {
+    background-color: #FF424F !important;
+    color: #FDFCF9;
+    border: 1px solid rgba(27, 31, 35, 0.15) !important;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+}
+
+.page-item:nth-child(1) {
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.page-item:nth-child(5) {
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.page-link:hover {
+    color: rgba(33, 37, 41, 0.75);
+}
+
+.page-link:active,
+.page-link:focus {
+    color: rgba(33, 37, 41, 0.75);
+    box-shadow: none;
+    border: 1px solid rgba(27, 31, 35, 0.15) !important;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+}

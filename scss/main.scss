@@ -34,17 +34,29 @@ body {
     // color: #4B4B4B;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
-    line-height: 23px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+img {
+    user-select: none;
 }
 
 .main {
     display: flex;
     justify-content: space-between;
     // align-items: center;
-}
-
-img {
-    user-select: none;
 }
 
 // .container {
@@ -56,3 +68,4 @@ img {
 @import "./header";
 @import "./films-section";
 @import "./aside";
+@import "./footer";
