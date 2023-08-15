@@ -214,7 +214,7 @@ const renderFilmsFromAPI = (array, element) => {
 async function getFilms(searchQuery = "hulk", page = 1) {
   try {
     const response = await fetch(
-      "http://www.omdbapi.com/?apikey=" +
+      "https://www.omdbapi.com/?apikey=" +
         API_KEY +
         "&s=" +
         searchQuery +
