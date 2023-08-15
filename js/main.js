@@ -212,28 +212,48 @@ const renderFilmsFromAPI = (array, element) => {
 };
 
 async function getFilms(searchQuery = "hulk", page = 1) {
-  const response = await fetch(
-    "http://www.omdbapi.com/?apikey=" +
-      API_KEY +
-      "&s=" +
-      searchQuery +
-      "&page=" +
-      page
-  );
-  const data = await response.json();
+  try {
+    const response = await fetch(
+      "http://www.omdbapi.com/?apikey=" +
+        API_KEY +
+        "&s=" +
+        searchQuery +
+        "&page=" +
+        page
+    );
+    const data = await response.json();
 
-  if (data.length > 0) {
-    renderFilmsFromAPI(data.Search, elFilmsList);
-  }
+    if (data?.Search?.length > 0) {
+      renderFilmsFromAPI(data.Search, elFilmsList);
+    }
 
-  if (data.Response === "True") {
-    renderFilmsFromAPI(data.Search, elFilmsList);
-  } else {
+    if (data.Response === "True") {
+      renderFilmsFromAPI(data.Search, elFilmsList);
+    }
+
+    if (pagination <= 1) {
+      findElement(".previous__page").classList.add("disabled");
+    } else {
+      findElement(".previous__page").classList.remove("disabled");
+    }
+
+    const lastPage = Math.ceil(data.totalResults / 10);
+
+    if (pagination === lastPage) {
+      findElement(".next__page").classList.add("disabled");
+    } else {
+      findElement(".next__page").classList.remove("disabled");
+    }
+  } catch (err) {
     elFilmsList.textContent = "No movie found!";
   }
 }
 
+// getFilms();
+
 // Handle Form Activation
+const searchedValue = elFilmsSearchInput.value.trim();
+
 const handleFilmsFilterFormSubmit = (evt) => {
   evt.preventDefault();
 
@@ -298,7 +318,6 @@ const handleFilmsFilterFormSubmit = (evt) => {
   // }
 
   // Search by title
-  const searchedValue = elFilmsSearchInput.value.trim();
 
   // const regex = new RegExp(searchedValue, "gi");
 
@@ -479,11 +498,9 @@ elPagination.addEventListener("click", (evt) => {
   if (evt.target.matches(".first__page")) {
     if (pagination >= 1) {
       pagination = 1;
-      const searchedValue = elFilmsSearchInput.value.trim();
       getFilms(searchedValue, pagination);
     } else {
       pagination++;
-      const searchedValue = elFilmsSearchInput.value.trim();
       getFilms(searchedValue, pagination);
     }
   }
@@ -491,11 +508,9 @@ elPagination.addEventListener("click", (evt) => {
   if (evt.target.matches(".second__page")) {
     if (pagination >= 2) {
       pagination = 2;
-      const searchedValue = elFilmsSearchInput.value.trim();
       getFilms(searchedValue, pagination);
     } else {
       pagination++;
-      const searchedValue = elFilmsSearchInput.value.trim();
       getFilms(searchedValue, pagination);
     }
   }
@@ -503,16 +518,13 @@ elPagination.addEventListener("click", (evt) => {
   if (evt.target.matches(".third__page")) {
     if (pagination >= 3) {
       pagination = 3;
-      const searchedValue = elFilmsSearchInput.value.trim();
       getFilms(searchedValue, pagination);
     } else {
       if ((pagination = 1)) {
         pagination = pagination + 2;
-        const searchedValue = elFilmsSearchInput.value.trim();
         getFilms(searchedValue, pagination);
       } else {
         pagination++;
-        const searchedValue = elFilmsSearchInput.value.trim();
         getFilms(searchedValue, pagination);
       }
     }
@@ -520,7 +532,6 @@ elPagination.addEventListener("click", (evt) => {
 
   if (evt.target.matches(".next__page")) {
     pagination++;
-    const searchedValue = elFilmsSearchInput.value.trim();
     getFilms(searchedValue, pagination);
   }
 });
