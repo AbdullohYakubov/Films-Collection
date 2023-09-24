@@ -37,7 +37,8 @@ let filmsCopy = films.map((film) => {
 
 films = filmsCopy;
 
-let pagination = 1;
+let searchQuery = "hulk";
+let page = 1;
 
 // Normalizing the Date Format
 const normalizeReleaseDate = (format) => {
@@ -213,7 +214,7 @@ const renderFilmsFromAPI = (array, element) => {
 
 const API_KEY = "aa58f87f";
 
-async function getFilms(searchQuery = "hulk", page = 1) {
+async function getFilms() {
   try {
     const response = await fetch(
       "https://www.omdbapi.com/?apikey=" +
@@ -236,7 +237,7 @@ async function getFilms(searchQuery = "hulk", page = 1) {
       renderFilmsFromAPI(data.Search, elFilmsList);
     }
 
-    if (pagination <= 1) {
+    if (page <= 1) {
       findElement(".previous__page").classList.add("disabled");
     } else {
       findElement(".previous__page").classList.remove("disabled");
@@ -244,7 +245,7 @@ async function getFilms(searchQuery = "hulk", page = 1) {
 
     const lastPage = Math.ceil(data.totalResults / 10);
 
-    if (pagination === lastPage) {
+    if (page === lastPage) {
       findElement(".next__page").classList.add("disabled");
     } else {
       findElement(".next__page").classList.remove("disabled");
@@ -261,7 +262,7 @@ getFilms();
 const handleFilmsFilterFormSubmit = (evt) => {
   evt.preventDefault();
 
-  const searchedValue = elFilmsSearchInput.value.trim();
+  searchQuery = elFilmsSearchInput.value.trim();
 
   elFilmsList.innerHTML = null;
 
@@ -333,7 +334,7 @@ const handleFilmsFilterFormSubmit = (evt) => {
 
   // renderFilms(filteredFilmsByTitle, elFilmsList);
 
-  getFilms(searchedValue);
+  getFilms();
 };
 
 elFilmsForm.addEventListener("submit", handleFilmsFilterFormSubmit);
@@ -468,9 +469,11 @@ elFilmsList.addEventListener("click", (evt) => {
   // }
 });
 
+// Tabs in the Aside section
 elAsideFeatures.addEventListener("click", (evt) => {
   if (evt.target.matches(".trending")) {
     renderFilms(films, elFilmsList);
+
     findElement(".valid-inputs").classList.remove("invalid-inputs");
   }
 
@@ -487,51 +490,50 @@ elAsideFeatures.addEventListener("click", (evt) => {
   }
 });
 
+// Pagination for movies
 elPagination.addEventListener("click", (evt) => {
-  const searchedValue = elFilmsSearchInput.value.trim();
-
   if (evt.target.matches(".previous__page")) {
-    pagination--;
-    getFilms(searchedValue, pagination);
+    page--;
+    getFilms();
   }
 
   if (evt.target.matches(".first__page")) {
-    if (pagination >= 1) {
-      pagination = 1;
-      getFilms(searchedValue, pagination);
+    if (page >= 1) {
+      page = 1;
+      getFilms();
     } else {
-      pagination++;
-      getFilms(searchedValue, pagination);
+      page++;
+      getFilms();
     }
   }
 
   if (evt.target.matches(".second__page")) {
-    if (pagination >= 2) {
-      pagination = 2;
-      getFilms(searchedValue, pagination);
+    if (page >= 2) {
+      page = 2;
+      getFilms();
     } else {
-      pagination++;
-      getFilms(searchedValue, pagination);
+      page++;
+      getFilms();
     }
   }
 
   if (evt.target.matches(".third__page")) {
-    if (pagination >= 3) {
-      pagination = 3;
-      getFilms(searchedValue, pagination);
+    if (page >= 3) {
+      page = 3;
+      getFilms();
     } else {
-      if ((pagination = 1)) {
-        pagination = pagination + 2;
-        getFilms(searchedValue, pagination);
+      if ((page = 1)) {
+        page = page + 2;
+        getFilms();
       } else {
-        pagination++;
-        getFilms(searchedValue, pagination);
+        page++;
+        getFilms();
       }
     }
   }
 
   if (evt.target.matches(".next__page")) {
-    pagination++;
-    getFilms(searchedValue, pagination);
+    page++;
+    getFilms();
   }
 });
