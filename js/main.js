@@ -37,7 +37,7 @@ let filmsCopy = films.map((film) => {
 
 films = filmsCopy;
 
-const API_KEY = "aa58f87f";
+let pagination = 1;
 
 // Normalizing the Date Format
 const normalizeReleaseDate = (format) => {
@@ -211,6 +211,8 @@ const renderFilmsFromAPI = (array, element) => {
   element.appendChild(filmsFragment);
 };
 
+const API_KEY = "aa58f87f";
+
 async function getFilms(searchQuery = "hulk", page = 1) {
   try {
     const response = await fetch(
@@ -221,7 +223,10 @@ async function getFilms(searchQuery = "hulk", page = 1) {
         "&page=" +
         page
     );
+
     const data = await response.json();
+
+    console.log(data);
 
     if (data?.Search?.length > 0) {
       renderFilmsFromAPI(data.Search, elFilmsList);
@@ -249,13 +254,14 @@ async function getFilms(searchQuery = "hulk", page = 1) {
   }
 }
 
-// getFilms();
+getFilms();
 
 // Handle Form Activation
-const searchedValue = elFilmsSearchInput.value.trim();
 
 const handleFilmsFilterFormSubmit = (evt) => {
   evt.preventDefault();
+
+  const searchedValue = elFilmsSearchInput.value.trim();
 
   elFilmsList.innerHTML = null;
 
@@ -481,18 +487,12 @@ elAsideFeatures.addEventListener("click", (evt) => {
   }
 });
 
-var pagination = 0;
 elPagination.addEventListener("click", (evt) => {
+  const searchedValue = elFilmsSearchInput.value.trim();
+
   if (evt.target.matches(".previous__page")) {
-    if (pagination <= 1) {
-      pagination = 1;
-      const searchedValue = elFilmsSearchInput.value.trim();
-      getFilms(searchedValue, pagination);
-    } else {
-      pagination--;
-      const searchedValue = elFilmsSearchInput.value.trim();
-      getFilms(searchedValue, pagination);
-    }
+    pagination--;
+    getFilms(searchedValue, pagination);
   }
 
   if (evt.target.matches(".first__page")) {
